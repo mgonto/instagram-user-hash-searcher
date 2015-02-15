@@ -35,7 +35,7 @@ if (process.env.NODE_ENV === 'development') {
 app.get('/search/user/:username/:hashtag', function(req, res) {
   var grabber = new InstagramGrabber(process.env.CLIENT_ID);
   grabber.searchByUsernameAndHashtag(req.params.username,
-    req.params.hashtag, req.query.amount).then(function(photos) {
+    req.params.hashtag, req.query.amount || 10).then(function(photos) {
       console.log("Finished", photos);
       res.status(200).send(photos);
     }, function(error) {
